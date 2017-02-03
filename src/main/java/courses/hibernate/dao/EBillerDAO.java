@@ -1,8 +1,8 @@
-package courses.hibernate.service;
+package courses.hibernate.dao;
 
 import courses.hibernate.vo.EBiller;
 
-public interface EBillerDAOInterface {
+public interface EBillerDAO {
 
 	public EBiller createEBiller(EBiller eBiller);
 

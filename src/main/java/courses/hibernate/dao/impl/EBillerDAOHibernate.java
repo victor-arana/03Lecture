@@ -3,11 +3,11 @@ package courses.hibernate.dao.impl;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import courses.hibernate.service.EBillerDAOInterface;
+import courses.hibernate.dao.EBillerDAO;
 import courses.hibernate.util.HibernateUtil;
 import courses.hibernate.vo.EBiller;
 
-public class EBillerDAOHibernate implements EBillerDAOInterface {
+public class EBillerDAOHibernate implements EBillerDAO {
 
 	@Override
 	public EBiller createEBiller(EBiller eBiller) {

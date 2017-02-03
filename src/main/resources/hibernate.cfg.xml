@@ -7,9 +7,9 @@
  		
 		<!-- Oracle Configuration -->
 	 	<property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
-		<property name="hibernate.connection.url">jdbc:oracle:thin:LECTURE3/LECTURE3@localhost:1521:XE</property>
+		<property name="hibernate.connection.url">jdbc:oracle:thin:LECTURE3/reverload@localhost:1521:XE</property>
 		<property name="hibernate.connection.username">LECTURE3</property>
-		<property name="hibernate.connection.password">LECTURE3</property>		
+		<property name="hibernate.connection.password">reverload</property>		
    		<property name="dialect">org.hibernate.dialect.Oracle10gDialect</property>
         
         <!-- JDBC connection pool (use the built-in) -->
