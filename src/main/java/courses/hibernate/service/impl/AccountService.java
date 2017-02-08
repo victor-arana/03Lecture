@@ -1,8 +1,7 @@
 package courses.hibernate.service.impl;
 
 import courses.hibernate.dao.AccountDAO;
-import courses.hibernate.dao.impl.AccountDAOHibernate;
-import courses.hibernate.dao.impl.AccountDAOOracle;
+import courses.hibernate.dao.impl.AccountDAOJPA;
 import courses.hibernate.service.AccountServiceInterface;
 import courses.hibernate.vo.Account;
 
@@ -11,7 +10,7 @@ import courses.hibernate.vo.Account;
  */
 public class AccountService implements AccountServiceInterface{
 	
-	AccountDAO accountDAO = new AccountDAOHibernate();
+	AccountDAO accountDAO = new AccountDAOJPA();
 	
 	/**
 	 * Create a new account

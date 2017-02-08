@@ -1,22 +1,31 @@
 package courses.hibernate.vo;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  * Domain object representing an Account
  */
+@Entity
 public class Account {
-	public static final String ACCOUNT_TYPE_SAVINGS = "SAVINGS";
-	public static final String ACCOUNT_TYPE_CHECKING = "CHECKING";
-
-	private long accountId;
-	private String accountType;
-	private Date creationDate;
-	private double balance;
-	private Collection<EBiller> ebillers = new ArrayList<EBiller>();
 	
+	@Id
+	@GeneratedValue
+	@Column(name = "ACCOUNT_ID")
+	private long accountId;
+	
+	@Column(name = "ACCOUNT_TYPE")
+	private String accountType;
+	
+	@Column(name = "CREATION_DATE")
+	private Date creationDate;
+	
+	@Column(name = "BALANCE")
+	private double balance;
 	/**
 	 * Get accountId
 	 * 
@@ -42,6 +51,21 @@ public class Account {
 	 */
 	public String getAccountType() {
 		return accountType;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Account [accountId=");
+		builder.append(accountId);
+		builder.append(", accountType=");
+		builder.append(accountType);
+		builder.append(", creationDate=");
+		builder.append(creationDate);
+		builder.append(", balance=");
+		builder.append(balance);
+		builder.append("]");
+		return builder.toString();
 	}
 
 	/**
@@ -87,114 +111,6 @@ public class Account {
 	 */
 	public void setBalance(double balance) {
 		this.balance = balance;
-	}
-
-	/**
-	 * Set ebillers
-	 * 
-	 * @param ebillers
-	 */
-	protected void setEbillers(Collection<EBiller> ebillers) {
-		this.ebillers = ebillers;
-	}
-
-	/**
-	 * Get ebillers
-	 * 
-	 * @return ebillers
-	 */
-	public Collection<EBiller> getEbillers() {
-		return ebillers;
-	}
-	
-	/**
-	 * Add ebiller to ebillers. Maintain both sides of bidirectional
-	 * relationship.
-	 * 
-	 * @param ebiller
-	 */
-	public void addEbiller(EBiller ebiller) {
-		this.ebillers.add(ebiller);
-		if (!ebiller.getAccounts().contains(this)) {
-			ebiller.addAccount(this);
-		}
-	}
-
-	/**
-	 * Remove ebiller from ebillers. Maintain both sides of bidirectional
-	 * relationship.
-	 * 
-	 * @param ebiller
-	 */
-	public void removeEbiller(EBiller ebiller) {
-		this.ebillers.remove(ebiller);
-		if (ebiller.getAccounts().contains(this)) {
-			ebiller.removeAccount(this);
-		}
-	}
-
-	@Override
-	public String toString() {
-		StringBuffer sb = new StringBuffer(512);
-		sb.append("\n----ACCOUNT----\n");
-		sb.append("accountId=" + accountId + "\n");
-		sb.append("accountType=" + accountType + "\n");
-		sb.append("creationDate=" + creationDate + "\n");
-		sb.append("balance=" + balance + "\n");
-
-		if (ebillers != null && ebillers.isEmpty() == false) {
-			sb.append("ebillers=");
-			for (EBiller ebiller : ebillers) {
-				sb.append((ebiller == null) ? "null" : ebiller.getEbillerId());
-				sb.append(",");
-			}
-			sb.deleteCharAt(sb.length() - 1);
-			sb.append("\n");
-		}
-		sb.append("----ACCOUNT----\n");
-		return sb.toString();
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (accountId ^ (accountId >>> 32));
-		result = prime * result
-				+ ((accountType == null) ? 0 : accountType.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(balance);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result
-				+ ((creationDate == null) ? 0 : creationDate.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof Account))
-			return false;
-		Account other = (Account) obj;
-		if (accountId != other.accountId)
-			return false;
-		if (accountType == null) {
-			if (other.accountType != null)
-				return false;
-		} else if (!accountType.equals(other.accountType))
-			return false;
-		if (Double.doubleToLongBits(balance) != Double
-				.doubleToLongBits(other.balance))
-			return false;
-		if (creationDate == null) {
-			if (other.creationDate != null)
-				return false;
-		} else if (!creationDate.equals(other.creationDate))
-			return false;
-		return true;
 	}
 	
 	
