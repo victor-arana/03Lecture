@@ -9,17 +9,14 @@ public class EBillerService implements EBillerServiceInterface {
 	
 	EBillerDAO eBillerDAO = new EBillerDAOHibernate();
 
-	@Override
 	public EBiller createEBiller(EBiller eBiller) {
 		return eBillerDAO.createEBiller(eBiller);
 	}
 
-	@Override
 	public EBiller getEBiller(long ebillerId) {
 		return eBillerDAO.getEBiller(ebillerId);
 	}
 
-	@Override
 	public void delete(EBiller eBiller) {
 		eBillerDAO.deleteEBiller(eBiller);
 		

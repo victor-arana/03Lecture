@@ -9,7 +9,6 @@ import courses.hibernate.vo.Account;
 
 public class AccountDAOHibernate implements AccountDAO {
 
-	@Override
 	public Account createAccount(Account account) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
@@ -20,7 +19,6 @@ public class AccountDAOHibernate implements AccountDAO {
 	}
 
 
-	@Override
 	public void updateAccount(Account account) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
@@ -29,7 +27,6 @@ public class AccountDAOHibernate implements AccountDAO {
 		session.close();
 	}
 
-	@Override
 	public void deleteAccount(Account account) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
@@ -38,7 +35,6 @@ public class AccountDAOHibernate implements AccountDAO {
 		session.close();
 	}
 
-	@Override
 	public Account getAccount(long accountId) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();

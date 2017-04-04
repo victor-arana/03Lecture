@@ -2,7 +2,6 @@ package courses.hibernate.service.impl;
 
 import courses.hibernate.dao.AccountDAO;
 import courses.hibernate.dao.impl.AccountDAOHibernate;
-import courses.hibernate.dao.impl.AccountDAOOracle;
 import courses.hibernate.service.AccountServiceInterface;
 import courses.hibernate.vo.Account;
 

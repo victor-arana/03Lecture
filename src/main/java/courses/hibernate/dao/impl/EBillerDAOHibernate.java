@@ -9,7 +9,6 @@ import courses.hibernate.vo.EBiller;
 
 public class EBillerDAOHibernate implements EBillerDAO {
 
-	@Override
 	public EBiller createEBiller(EBiller eBiller) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
@@ -19,7 +18,6 @@ public class EBillerDAOHibernate implements EBillerDAO {
 		return getEBiller(eBillerId);
 	}
 
-	@Override
 	public EBiller getEBiller(long ebillerId) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
@@ -29,7 +27,6 @@ public class EBillerDAOHibernate implements EBillerDAO {
 		return eBiller;
 	}
 
-	@Override
 	public void deleteEBiller(EBiller eBiller) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();

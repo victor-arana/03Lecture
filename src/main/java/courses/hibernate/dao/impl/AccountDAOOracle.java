@@ -59,7 +59,6 @@ public class AccountDAOOracle implements AccountDAO {
 	 * @param account account to be created
 	 * @return created account
 	 */
-	@Override
 	public Account createAccount(Account account) {
 		Connection connection = null;
 		PreparedStatement getAccountIdStatement = null;
@@ -102,7 +101,6 @@ public class AccountDAOOracle implements AccountDAO {
 	 * @param account
 	 *            account to be created
 	 */
-	@Override
 	public void updateAccount(Account account) {
 		Connection connection = null;
 		PreparedStatement updateAccountStatement = null;
@@ -133,7 +131,6 @@ public class AccountDAOOracle implements AccountDAO {
 	 * 
 	 * @param account account to be deleted
 	 */
-	@Override
 	public void deleteAccount(Account account) {
 		Connection connection = null;
 		PreparedStatement deleteAccountStatement = null;
@@ -163,7 +160,6 @@ public class AccountDAOOracle implements AccountDAO {
 	 * @param accountId identifier of the account to be retrieved
 	 * @return account represented by the identifier provided
 	 */
-	@Override
 	public Account getAccount(long accountId) {
 		Connection connection = null;
 		PreparedStatement getAccountStatement = null;
