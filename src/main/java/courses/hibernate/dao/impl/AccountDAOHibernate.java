@@ -1,47 +1,43 @@
 package courses.hibernate.dao.impl;
 
 import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import courses.hibernate.dao.AccountDAO;
-import courses.hibernate.util.HibernateUtil;
 import courses.hibernate.vo.Account;
 
+@Repository
 public class AccountDAOHibernate implements AccountDAO {
+	
+	@Autowired
+	private SessionFactory sessionFactory;
 
 	public Account createAccount(Account account) {
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction tx = session.beginTransaction();
-		Long accountId = (Long) session.save(account); 
-		tx.commit();
-		session.close();
-		return getAccount(accountId);
-	}
-
-
-	public void updateAccount(Account account) {
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction tx = session.beginTransaction();
-		session.saveOrUpdate(account);
-		tx.commit();
-		session.close();
-	}
-
-	public void deleteAccount(Account account) {
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction tx = session.beginTransaction();
-		session.delete(account);
-		tx.commit();
-		session.close();
+		Session session = getSession();
+		Account accnt = (Account) session.merge(account);
+		return accnt;
 	}
 
 	public Account getAccount(long accountId) {
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction tx = session.beginTransaction();
+		Session session = getSession();
 		Account account = (Account) session.get(Account.class, accountId);
-		tx.commit();
-		session.close();
 		return account;
+	}
+
+	public void deleteAccount(Account account) {
+		Session session = getSession();
+		session.delete(account);
+	}	
+	
+	public void updateAccount(Account account) {
+		Session session = getSession();
+		session.saveOrUpdate(account);
+	}
+	
+	public Session getSession() {
+		return sessionFactory.getCurrentSession();
 	}
 
 }
