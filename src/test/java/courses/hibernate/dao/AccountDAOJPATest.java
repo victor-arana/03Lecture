@@ -15,10 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 import courses.hibernate.vo.Account;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations="classpath:root-context.xml")
+@ContextConfiguration(locations="classpath:root-context-jpa.xml")
 @TransactionConfiguration(defaultRollback=true,transactionManager="transactionManager")
 @Transactional
-public class AccountDAOHibernateTest {
+public class AccountDAOJPATest {
 	
 	@Autowired
 	private AccountDAO accountDAO;
