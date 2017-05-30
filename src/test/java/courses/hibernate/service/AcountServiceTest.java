@@ -80,32 +80,6 @@ public class AcountServiceTest {
 		Assert.assertNull(anotherCopy);
 	}
 
-	
-	/**
-	 * Test update of account type. Account Type is set to update=false in
-	 * Hibernate Mapping. Therefore, ensure that it does not get updated.
-	 */
-	@Test
-	public void testUpdateAccountType() {
-		Account account = createAccount();
-		System.out.println("var account = " + account);
-
-		account.setAccountType(Account.ACCOUNT_TYPE_CHECKING);
-		accountService.updateAccount(account);
-
-		Account anotherCopy = accountService.getAccount(account.getAccountId());
-		System.out.println("var anotherCopy = " + anotherCopy);
-
-		// make sure the one we just pulled back from
-		// the database DOES NOT HAVE the updated balance
-		// ----------------------------------------------
-		Assert.assertFalse(anotherCopy.getAccountType().equals(Account.ACCOUNT_TYPE_CHECKING));
-
-		// cleanup
-		// -------
-		deleteAccount(account);
-	}
-
 	/**
 	 * Test updating of account balance
 	 */
@@ -137,7 +111,7 @@ public class AcountServiceTest {
 	 */
 	private Account buildAccount(){
 		Account account = new Account();
-		account.setAccountType(Account.ACCOUNT_TYPE_SAVINGS);
+		account.setAccountType("SAVINGS");
 		account.setCreationDate(new Date());
 		account.setBalance(1000L);
 		return account;
